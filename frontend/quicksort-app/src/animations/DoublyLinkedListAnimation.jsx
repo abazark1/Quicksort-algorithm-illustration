@@ -49,9 +49,7 @@ function DoublyLinkedLisAnimation({ numbers, colors, pointers, springs, api, box
                 left: `${idx * (boxWidth + boxSpacing)}px`,
                 fontSize: idx === 0 || idx === numbers.length - 1 ? `${boxWidth}px` : `${boxWidth / 3}px`,
                 backgroundColor: idx === 0 || idx == 1 || idx === numbers.length - 1 || idx === numbers.length - 2 ? "white" : `${colors[idx]}`,
-              }}
-            >
-              {numbers[idx]}
+              }}> {numbers[idx]}
             </animated.div>
             {idx < numbers.length - 1 && (
               <div
@@ -99,9 +97,7 @@ function DoublyLinkedLisAnimation({ numbers, colors, pointers, springs, api, box
                 boxShadow: "1px 1px 3px rgba(0,0,0,0.4)",
                 borderRadius: "4px",
                 transition: "left 300ms",
-              }}
-            >
-              {key}
+              }}> {key}
             </animated.div>
           );
         })}
@@ -110,12 +106,10 @@ function DoublyLinkedLisAnimation({ numbers, colors, pointers, springs, api, box
         {currentAction}
       </div>
       <div style={{ marginTop: "20px" }}>
-        <button onClick={prevStep}>Previous</button>
+        <button onClick={prevStep} disabled={history.length === 0}>Previous</button>
         <button onClick={nextStep}>Next</button>
       </div>
-      <button onClick={toggleHistory} disabled={history.length === 0}>
-        View History
-      </button>
+      <button onClick={toggleHistory} disabled={history.length === 0}> View History </button>
       {showHistory && (<HistoryViewer history={history} dataStructure="doublyLinkedList" />)}
     </div>
   );

@@ -18,9 +18,7 @@ function LinkedListAnimation({numbers, colors, pointers, springs, api, boxWidth,
         <div>s - pointer to find the elements less than the pivot</div>
         <div>ps - pointer to the element before the one to be unlinked</div>
         <div>p - pointer to the most left element</div>
-        <div>
-          q - pointer to the element to be unlinked and inserted before pivot
-        </div>
+        <div>q - pointer to the element to be unlinked and inserted before pivot</div>
       </div>
       <p>Steps:</p>
       <div style={{ position: "relative", width: `${totalWidth}px`, display: "flex", justifyContent: "center", marginBottom: "50px" }}>
@@ -41,9 +39,7 @@ function LinkedListAnimation({numbers, colors, pointers, springs, api, boxWidth,
                 borderRadius: "4px",
                 boxShadow: idx === 0 || idx === numbers.length - 1 ? "none" : "1px 1px 3px rgba(0,0,0,0.4)",
                 backgroundColor: idx === 0 || idx === 1 ? "white" : idx === numbers.length - 1 ? "black" : `${colors[idx]}`,
-              }}
-            >
-              {numbers[idx]}
+              }}> {numbers[idx]}
             </animated.div>
             {idx < numbers.length - 1 && (
               <div
@@ -93,9 +89,7 @@ function LinkedListAnimation({numbers, colors, pointers, springs, api, boxWidth,
                 borderRadius: "4px",
                 transform: "translateX(-50%)",
                 transition: "left 300ms",
-              }}
-            >
-              {key}
+              }}> {key}
             </animated.div>
           );
         })}
@@ -104,12 +98,10 @@ function LinkedListAnimation({numbers, colors, pointers, springs, api, boxWidth,
         {currentAction}
       </div>
       <div style={{ marginTop: "20px" }}>
-        <button onClick={prevStep}>Previous</button>
+        <button onClick={prevStep} disabled={history.length === 0}>Previous</button>
         <button onClick={nextStep}>Next</button>
       </div>
-      <button onClick={toggleHistory} disabled={history.length === 0}>
-        View History
-      </button>
+      <button onClick={toggleHistory} disabled={history.length === 0}> View History </button>
       {showHistory && (<HistoryViewer history={history} dataStructure="linkedList" />)}
     </div>
   );

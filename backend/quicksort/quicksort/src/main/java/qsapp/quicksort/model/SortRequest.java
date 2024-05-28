@@ -12,6 +12,4 @@ import lombok.NoArgsConstructor;
 public class SortRequest {
     private int[] data;
     private String algorithm;
-    private int pivot;
-
 }

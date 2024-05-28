@@ -10,27 +10,19 @@ describe("Tutorial component", () => {
 
   it("displays the initial topic content", () => {
     const { getByText } = render(<Tutorial />);
-    expect(
-      getByText("Quicksort for Arrays", { selector: "h2" })
-    ).toBeInTheDocument();
+    expect( getByText("Quicksort for Arrays", { selector: "h2" })).toBeInTheDocument();
   });
 
   it("displays the content when a topic button is clicked", () => {
     const { getByText } = render(<Tutorial />);
 
     fireEvent.click(getByText("Quicksort for Linked Lists"));
-    expect(
-      getByText("Quicksort for Linked Lists", { selector: "h2" })
-    ).toBeInTheDocument();
+    expect( getByText("Quicksort for Linked Lists", { selector: "h2" })).toBeInTheDocument();
 
     fireEvent.click(getByText("Quicksort for Double Linked Lists"));
-    expect(
-      getByText("Quicksort for Double Linked Lists", { selector: "h2" })
-    ).toBeInTheDocument();
+    expect( getByText("Quicksort for Double Linked Lists", { selector: "h2" })).toBeInTheDocument();
 
     fireEvent.click(getByText("Quicksort for Arrays"));
-    expect(
-      getByText("Quicksort for Arrays", { selector: "h2" })
-    ).toBeInTheDocument();
+    expect( getByText("Quicksort for Arrays", { selector: "h2" })).toBeInTheDocument();
   });
 });

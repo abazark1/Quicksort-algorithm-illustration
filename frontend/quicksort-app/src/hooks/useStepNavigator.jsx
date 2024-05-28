@@ -1,17 +1,6 @@
 import { useCallback } from "react";
 
-function useStepNavigator(
-  currentStep,
-  setCurrentStep,
-  executeStep,
-  queue,
-  history,
-  setHistory,
-  setNumbers,
-  setColors,
-  setPointers,
-  setCurrentAction
-) {
+function useStepNavigator( currentStep, setCurrentStep, executeStep, queue, history, setHistory, setNumbers, setColors, setPointers, setCurrentAction) {
   const nextStep = useCallback(() => {
     if (currentStep < queue.length) {
       if (currentStep < history.length) {

@@ -17,6 +17,25 @@ public class QuickSortLinkedList implements SortStrategy {
         quicksort(head, outputs);
     }
 
+    public void quicksort(Node h, List<String> animations){
+        QS(h, null, animations);
+        animations.add("Final," + printList(h));
+    }
+
+    public void QS(Node p, Node r, List<String> animations){
+        Node t = p.next;
+        if (t != r && t.next != r){
+            partition(p, t, r, animations);
+            animations.add("final," + t.val + "," + getIndexOfElement(t));
+            QS(p, t, animations);
+            QS(t, r, animations);
+        } else {
+            if(t != null){
+                animations.add("final," + t.val + "," + getIndexOfElement(t));
+            }
+        }
+    }
+
     public void partition(Node p, Node t, Node r, List<String> animations){
         animations.add("pivot," + t.val + "," + getIndexOfElement(t));
         animations.add("init,p,\\" + "," + getIndexOfElement(p));
@@ -52,25 +71,6 @@ public class QuickSortLinkedList implements SortStrategy {
                 }
             }
         }
-    }
-
-    public void QS(Node p, Node r, List<String> animations){
-        Node t = p.next;
-        if (t != r && t.next != r){
-            partition(p, t, r, animations);
-            animations.add("final," + t.val + "," + getIndexOfElement(t));
-            QS(p, t, animations);
-            QS(t, r, animations);
-        } else {
-            if(t != null){
-                animations.add("final," + t.val + "," + getIndexOfElement(t));
-            }
-        }
-    }
-
-    public void quicksort(Node h, List<String> animations){
-        QS(h, null, animations);
-        animations.add("Final," + printList(h));
     }
 
     public String printList(Node head) {

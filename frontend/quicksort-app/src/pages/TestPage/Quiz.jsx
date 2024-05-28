@@ -14,10 +14,7 @@ const Quiz = ({ questions }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const score = questions.reduce(
-      (acc, curr, index) => (curr.answer === answers[index] ? acc + 1 : acc),
-      0
-    );
+    const score = questions.reduce((acc, curr, index) => (curr.answer === answers[index] ? acc + 1 : acc), 0);
     setScore(score);
     setShowModal(true);
   };
@@ -30,10 +27,7 @@ const Quiz = ({ questions }) => {
     <div>
       <h2>Test Page</h2>
       {questions.map((question, index) => (
-        <div
-          key={index}
-          style={{ borderBottom: "1px solid #ccc", paddingBottom: "10px" }}
-        >
+        <div key={index} style={{ borderBottom: "1px solid #ccc", paddingBottom: "10px" }}>
           <p>{question.question}</p>
           {question.options.map((option, optionIndex) => (
             <label key={optionIndex}>
@@ -48,18 +42,12 @@ const Quiz = ({ questions }) => {
           ))}
         </div>
       ))}
-      <button data-testid="submit-button" onClick={handleSubmit}>
-        Submit
-      </button>
+      <button data-testid="submit-button" onClick={handleSubmit}> Submit </button>
       {showModal && (
         <>
           <div className="modal-backdrop"></div>
           <div className="modal">
-            <ScoreModal
-              onClose={handleCloseModal}
-              score={score}
-              totalQuestions={questions.length}
-            />
+            <ScoreModal onClose={handleCloseModal} score={score} totalQuestions={questions.length} />
           </div>
         </>
       )}

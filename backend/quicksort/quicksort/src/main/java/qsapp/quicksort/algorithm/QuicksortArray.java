@@ -71,7 +71,7 @@ public class QuicksortArray  implements SortStrategy{
         return i;
     }
 
-    public int random(int p, int r){
+    private int random(int p, int r){
         int range = r - p + 1;
         return (int) (Math.random() * range) + p;
     }

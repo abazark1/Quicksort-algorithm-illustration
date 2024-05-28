@@ -14,18 +14,24 @@ public class QuickSortDoublyLinkedList implements SortStrategy{
     public void sort(List<String> outputs){
         quicksort(head, outputs);
     }
-    public String printList(DoublyNode head) {
-        StringBuilder sb = new StringBuilder();
-        if (head != null && head.next != head) {
-            DoublyNode curr = head.next;
-            do {
-                sb.append(curr.val).append(" ");
-                curr = curr.next;
-            } while (curr != head);
+
+    public void quicksort(DoublyNode H, List<String> animations){
+        if (H.next != H){
+            QS(H, H,  animations);
         }
-        return sb.toString();
+        animations.add("Final, " + printList(H));
     }
 
+    public void QS(DoublyNode p, DoublyNode r, List<String> animations){
+        if (p.next != r && p.next != r.prev){
+            DoublyNode t = partition(p, r, animations);
+            animations.add("final," + t.val + "," + getIndexOfElement(t));
+            QS(p, t, animations);
+            QS(t, r, animations);
+        } else {
+            animations.add("final," + p.next.val + "," + getIndexOfElement(p.next));
+        }
+    }
 
     public DoublyNode partition(DoublyNode p, DoublyNode r, List<String> animations) {
         DoublyNode t = p.next;
@@ -77,22 +83,16 @@ public class QuickSortDoublyLinkedList implements SortStrategy{
         p.next = r.prev = q;
     }
 
-    public void QS(DoublyNode p, DoublyNode r, List<String> animations){
-        if (p.next != r && p.next != r.prev){
-            DoublyNode t = partition(p, r, animations);
-            animations.add("final," + t.val + "," + getIndexOfElement(t));
-            QS(p, t, animations);
-            QS(t, r, animations);
-        } else {
-            animations.add("final," + p.next.val + "," + getIndexOfElement(p.next));
+    public String printList(DoublyNode head) {
+        StringBuilder sb = new StringBuilder();
+        if (head != null && head.next != head) {
+            DoublyNode curr = head.next;
+            do {
+                sb.append(curr.val).append(" ");
+                curr = curr.next;
+            } while (curr != head);
         }
-    }
-
-    public void quicksort(DoublyNode H, List<String> animations){
-        if (H.next != H){
-            QS(H, H,  animations);
-        }
-        animations.add("Final, " + printList(H));
+        return sb.toString();
     }
 
     private int getIndexOfElement(DoublyNode node) {

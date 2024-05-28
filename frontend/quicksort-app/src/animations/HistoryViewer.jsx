@@ -5,7 +5,7 @@ const HistoryViewer = ({ history, dataStructure }) => {
     return index1 === index2;
   }
 
-  function getStyleBasedOnDataStructure(
+  function getTopAndLeft(
     dataStructure, key, pointerIdx, pointers) {
     let left = "50%";
     const isS = key === "s";
@@ -68,16 +68,14 @@ const HistoryViewer = ({ history, dataStructure }) => {
                   backgroundColor: dataStructure === "linkedList" && idx === step.numbers.length - 1 ? "black" : step.colors[idx],
                   transition: "all 0.3s ease",
                   position: "relative",
-                }}
-              >
-                {number}
+                }}> {number}
                 {Object.entries(step.pointers).map(
                   ([key, pointerIdx]) => pointerIdx === idx && (
                       <div
                         key={key}
                         style={{
                           position: "absolute",
-                          ...getStyleBasedOnDataStructure(dataStructure, key, pointerIdx, step.pointers),
+                          ...getTopAndLeft(dataStructure, key, pointerIdx, step.pointers),
                           transform: "translateX(-50%)",
                           width: `${boxWidth / 1.7}px`,
                           height: `${boxWidth / 2.5}px`,
@@ -90,9 +88,7 @@ const HistoryViewer = ({ history, dataStructure }) => {
                           boxShadow: "1px 1px 3px rgba(0,0,0,0.4)",
                           borderRadius: "4px",
                           transition: "left 300ms, width 300ms, height 300ms, font-size 300ms",
-                        }}
-                      >
-                        {key}
+                        }}> {key}
                       </div>
                     )
                 )}

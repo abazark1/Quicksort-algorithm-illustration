@@ -38,9 +38,7 @@ function ArrayAnimation({ numbers, colors, pointers, springs, api, boxWidth, box
                 borderRadius: "4px",
                 boxShadow: "1px 1px 3px rgba(0,0,0,0.4)",
                 backgroundColor: `${colors[idx]}`,
-              }}
-            >
-              {numbers[idx]}
+              }}> {numbers[idx]}
             </animated.div>
           </React.Fragment>
         ))}
@@ -77,9 +75,7 @@ function ArrayAnimation({ numbers, colors, pointers, springs, api, boxWidth, box
                 boxShadow: "1px 1px 3px rgba(0,0,0,0.4)",
                 borderRadius: "4px",
                 transition: "left 300ms, width 300ms, height 300ms, font-size 300ms",
-              }}
-            >
-              {key}
+              }}> {key}
             </animated.div>
           );
         })}
@@ -88,16 +84,10 @@ function ArrayAnimation({ numbers, colors, pointers, springs, api, boxWidth, box
         {currentAction}
       </div>
       <div style={{ marginTop: "20px" }}>
-        <button onClick={prevStep} disabled={history.length === 0}>
-          Previous
-        </button>
-        <button onClick={nextStep} disabled={nextStep === null}>
-          Next
-        </button>
+        <button onClick={prevStep} disabled={history.length === 0}> Previous </button>
+        <button onClick={nextStep} disabled={nextStep === null}> Next </button>
       </div>
-      <button onClick={toggleHistory} disabled={history.length === 0}>
-        View History
-      </button>
+      <button onClick={toggleHistory} disabled={history.length === 0}> View History </button>
       {showHistory && <HistoryViewer history={history} dataStructure="array" />}
     </div>
   );
