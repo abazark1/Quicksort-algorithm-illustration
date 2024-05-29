@@ -22,15 +22,30 @@ const HistoryViewer = ({ history, dataStructure }) => {
       case "array":
         const isPivot = key === "pivot";
         const isJ = key === "j";
+        const isI = key === "i";
+        const isP = key === "p";
+        const isR = key === "r";
         const pivotIndex = pointers["pivot"];
         const jIndex = pointers["j"];
-        let top = isJ || isPivot ? "-20px" : "45px";
+        let top = 0;
 
         if (isJ && pivotIndex !== undefined && isOverlapping(pointerIdx, pivotIndex)) {
           left = `${boxWidth / 2 - boxWidth / 3}px`;
         } else if (isPivot && jIndex !== undefined && isOverlapping(pointerIdx, jIndex)) {
           left = `${boxWidth / 2 + boxWidth / 3}px`;
         }
+
+        let pointerTop;
+          if (isJ || isPivot) {
+            top = "-20px";
+          } else if (isI) {
+            top = `${boxWidth}px`;
+          } else if (isP || isR) {
+            top = "70px";
+          } else {
+            top = "0px";
+          }
+
         return { top, left };
       case "linkedList":
         return { top: key === "ps" || key == "p" ? "45px" : "-20px", left };
@@ -80,7 +95,7 @@ const HistoryViewer = ({ history, dataStructure }) => {
                           width: `${boxWidth / 1.7}px`,
                           height: `${boxWidth / 2.5}px`,
                           fontSize: `${boxWidth / 4.2}px`,
-                          backgroundColor: "#72A0C1",
+                          backgroundColor: dataStructure === 'array' && key === 'p' || key === 'r' ? "#B0C4DE" : "#72A0C1",
                           color: "white",
                           display: "flex",
                           alignItems: "center",
@@ -91,7 +106,7 @@ const HistoryViewer = ({ history, dataStructure }) => {
                         }}> {key}
                       </div>
                     )
-                )}
+                  )}
               </div>
             ))}
           </div>

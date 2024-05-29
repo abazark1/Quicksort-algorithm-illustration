@@ -53,16 +53,15 @@ public class QuickSortDoublyLinkedList implements SortStrategy{
                 s = s.next;
 
                 animations.add("init,q," + q.val + "," + getIndexOfElement(q));
-                animations.add("unlink," + q.val + "," + getIndexOfElement(q));
-                animations.add("precede," + q.val + "," + getIndexOfElement(q) + "," + t.val + "," + getIndexOfElement(t));
-                unlink(q);
-                precede(q, t);
-
                 if(s.val != null){
                     animations.add("move,s," + s.val + "," + getIndexOfElement(s));
                 }else {
                     animations.add("move,s,\\");
                 }
+                animations.add("unlink," + q.val + "," + getIndexOfElement(q));
+                animations.add("precede," + q.val + "," + getIndexOfElement(q) + "," + t.val + "," + getIndexOfElement(t));
+                unlink(q);
+                precede(q, t);
             }
         }
         return t;

@@ -24,11 +24,20 @@ export const init = (message, setPointers) => {
 };
 
 export const move = (message, numbers, setPointers) => {
+
   const parts = message.split(",");
 
   if (parts.length < 3) {
     console.error("Invalid format");
     return;
+  }
+
+  if (parts[1] === 'p'){
+    setPointers((prev) => {
+      let newPointers = { ...prev };
+      delete newPointers["q"];
+      return newPointers;
+    });
   }
 
   const newPointers = {};
@@ -91,12 +100,19 @@ export const swappivot = (numbers, value1, index1, value2, index2, api, setNumbe
   });
 };
 
-export const compare = (index1, index2, api) => {
+export const compare = (index1, index2, api, setPointers) => {
+  setPointers((prev) => {
+    let newPointers = { ...prev };
+    delete newPointers["q"];
+    return newPointers;
+  });
+
   api.start((i) => ({
     scale: i === index1 || i === index2 ? 1.1 : 1,
     transform: "translateX(0px)",
     opacity: 1,
   }));
+
   setTimeout(() => {
     api.start({ scale: 1 });
   }, 1000);
@@ -104,9 +120,12 @@ export const compare = (index1, index2, api) => {
 
 export const unlink = (numbers, index, api, setPointers) => {
   api.start((i) => ({
-    opacity: i === index ? 0 : 1,
+    transform: i === index ? 'translateY(60px)' : 'translateY(0px)',
+    opacity: 1,
+    immediate: i === index
   }));
 };
+
 
 export const precede = (numbers, index1, index2, api, setPointers) => {
   let newNumbers = [...numbers];
@@ -147,30 +166,17 @@ export const precede = (numbers, index1, index2, api, setPointers) => {
       if (numbers[newPointers[key]] === psPosition && numbers[numbers.length - 1] === " ") {
         newPointers["ps"] = newNumbers.indexOf(psPosition);
       }
-      if (numbers[newPointers[key]] === sPosition) {
-        newPointers["s"] = newNumbers.indexOf(sPosition) + 1;
-      }
     }
 
     return newPointers;
-  });
-
-  api.start(() => {
-    for (let animation of animations) {
-      animation.onRest = () => {
-        api.start({ transform: "translateX(0px)", opacity: 1 });
-      };
-    }
-    return animations;
   });
 
   newNumbers.splice(index2, 0, parseInt(numbers[index1]));
 
-  setPointers((prev) => {
-    let newPointers = { ...prev };
-    newPointers["s"] = sPosition;
-    return newPointers;
-  });
+  api.start((i) => ({
+    transform: 'translateY(0px)',
+    opacity: 1,
+  }));
 
   return newNumbers;
 };

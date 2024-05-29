@@ -62,7 +62,7 @@ const tutorialContent = {
       <div>
         <p>
           One-way lists or singly linked lists is a linear data structure consisting of keys (elements) where each key has a pointer to the next
-          key in the list. The last element has a reference to NULL which means the end of the list. In this work, we are working with one-way lists
+          key in the list. The last element has a reference NULL which means the end of the list. In this work, we are working with one-way lists
           with a header node. This header node, situated at the zeroth place, serves as a starting point that points to the first actual element in
           the list. Compared to arrays, linked lists are better in terms of efficient insertion and deletion operations due to its dynamic memory
           allocation. Quicksort for singly linked lists follows the base structure of the algorithm, but there is one difference. As mentioned
@@ -76,14 +76,15 @@ const tutorialContent = {
         <p>Here's a breakdown of the process:</p>
         <ul>
           <li>
-            <b> Pick a <i>pivot</i>:</b> Similar to arrays, you choose a node as the <i>pivot</i>. In this the pivot is the first node
+            <b> Pick a <i>pivot</i>:</b> Similar to arrays, you choose a node as the <i>pivot</i>. In this цщкл the pivot is the first node
           </li>
           <li>
             <b>Partitioning:</b> Unlike arrays where elements can be directly swapped, linked lists require re-linking pointers. 
-            Traverse the linked list, comparing each node's value with the <i>pivot</i>.
+            Traverse the linked list, comparing each node's value with the <i>pivot</i>. If the node's value is less than the <i>pivot</i>,
+            then unlink the element, and instert it back right before the <i>pivot</i>.
           </li>
           <li>
-            <b>Recursive sorting:</b> Recursively sort the "less than" and "greater than" linked lists (excluding the <i>pivot</i>)
+            <b>Recursive sorting:</b> Recursively sort the values less than and greater than the <i>pivot</i>
             using quicksort for linked lists.
           </li>
           <p>
@@ -95,7 +96,7 @@ const tutorialContent = {
     ),
   },
   "quicksort-double-linked-lists": {
-    title: "Quicksort for Double Linked Lists",
+    title: "Quicksort for Doubly Linked Lists",
     content: (
       <div>
         <p>
@@ -103,8 +104,11 @@ const tutorialContent = {
           components: a key, a pointer to the next element, and a pointer to the previous element in the sequence. In addition to these features,
           cyclic two-way lists have a unique characteristic: they are circular. This means that the list does not terminate with null. Instead, the
           last element's next pointer directs back to the header, and correspondingly, the first element's previous pointer refers back to
-          the header. This makes it possible to traverse the list without keeping the track of the last element of the list.
+          the header.
         </p>
+        <div className="image-container">
+          <img src="../../../public/cyclic-two-way-list.png" alt="Cyclic two-way list" style={{ width: "50%", height: "auto" }}/>
+        </div>
         <p>
           Quicksort for cyclic two-way lists is very similar to the implementation of singly linked lists. In both cases, the algorithm
           uses unlink and precede operations to sort the list. They ensure the original order of the list maintaining stability.

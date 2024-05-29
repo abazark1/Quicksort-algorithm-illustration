@@ -34,6 +34,7 @@ public class QuicksortArray  implements SortStrategy{
     }
 
     public int partition(int[] arr, int p, int r, List<String> animations) {
+        animations.add("init,p," + arr[p] + "," + p + ",r," + arr[r] + "," + r);
         int i = random(p, r);
         animations.add("pivot," + arr[i] + "," + i);
         animations.add("swappivot," + arr[i] + "," + i + "," + arr[r] + "," + r);

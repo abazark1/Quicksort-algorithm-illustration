@@ -56,19 +56,20 @@ public class QuickSortLinkedList implements SortStrategy {
             } else {
                 Node q = s;
                 animations.add("init,q," + q.val + "," + getIndexOfElement(q));
+                s = s.next;
+                if(s != null){
+                    animations.add("move,s," + s.val + "," + getIndexOfElement(s));
+                } else {
+                    animations.add("move,s, ," + (getListLength() + 1));
+                }
                 animations.add("unlink," + q.val + "," + getIndexOfElement(q));
                 animations.add("precede," + q.val + "," + getIndexOfElement(q) + "," + t.val + "," + getIndexOfElement(t));
-                s = s.next;
                 ps.next = s;
 
                 q.next = p.next;
                 p.next = q;
                 p = q;
-                if (s != null){
-                    animations.add("move,s," + s.val + "," + getIndexOfElement(s) + ",ps," + ps.val + "," + getIndexOfElement(ps) + ",p," + p.val + "," + getIndexOfElement(p));
-                } else {
-                    animations.add("move,s, ," + (getListLength() + 1) +  ",ps," + ps.val + "," + getIndexOfElement(ps) + ",p," + p.val + "," + getIndexOfElement(p));
-                }
+                animations.add("move,p," + p.val + "," + getIndexOfElement(p));
             }
         }
     }

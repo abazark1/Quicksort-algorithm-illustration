@@ -16,6 +16,7 @@ function createAnimation(WrappedComponent, formatInitialNumbers) {
     const [currentAction, setCurrentAction] = useState("");
     const [history, setHistory] = useState([]);
     const [showHistory, setShowHistory] = useState(false);
+    const [arrowStyles, setArrowStyles] = useState({});
     const initialWidth = 50;
     const initialSpacing = 15;
     const { boxWidth, boxSpacing, updateSize } = useResponsiveLayout(
@@ -66,16 +67,11 @@ function createAnimation(WrappedComponent, formatInitialNumbers) {
           break;
         case "move":
           setCurrentAction("Moving pointers to their new positions");
-          setPointers((prev) => {
-            let newPointers = { ...prev };
-            delete newPointers["q"];
-            return newPointers;
-          });
           move(step, numbers, setPointers);
           break;
         case "compare":
           setCurrentAction(`Comparing ${value1} with ${parseInt(value2)}`);
-          compare(index1, index2, api);
+          compare(index1, index2, api, setPointers);
           break;
         case "unlink":
           setCurrentAction(`Unlinking ${value1}`);
@@ -94,7 +90,7 @@ function createAnimation(WrappedComponent, formatInitialNumbers) {
           swap(numbers, value1, index1, value2, index2, api, setNumbers, setPointers);
           break;
         case "Final":
-          setCurrentAction("The list is sorted");
+          setCurrentAction("Here is the sorted result!");
           setColors(colors.map(() => "#ACE1AF"));
           setPointers({});
           saveToHistory();

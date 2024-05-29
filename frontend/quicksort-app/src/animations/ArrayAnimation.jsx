@@ -16,8 +16,10 @@ function ArrayAnimation({ numbers, colors, pointers, springs, api, boxWidth, box
           Pointers Information
         </div>
         <div>pivot - pointer to the pivot element</div>
-        <div>i - pointer to keep the elements less or equal to the pivot</div>
-        <div>j - pointer to keep the elements more or equal to the pivot</div>
+        <div>A[p .. r] is the actual subarray</div>
+        <div>A[p .. i - 1] contains elements less or equal to the pivot</div>
+        <div>A[i .. j - 1] contains elements greater or equal to the pivot</div>
+        <div>A[j .. (r - 1)] contains the unprocessed elements</div>
       </div>
       <p>Steps:</p>
       <div style={{ position: "relative", width: `${totalWidth}px`, display: "flex", justifyContent: "center", marginBottom: "70px", marginTop: "20px"}}>
@@ -48,12 +50,26 @@ function ArrayAnimation({ numbers, colors, pointers, springs, api, boxWidth, box
           const isPivot = key === "pivot";
           const pivotIndex = pointers["pivot"];
           const isJ = key === "j";
+          const isP = key === "p";
+          const isR = key === "r";
+          const isI = key === "i";
           let pointerLeft = `${ index * (boxWidth + boxSpacing) + boxWidth / 2}px`;
 
           if ( isJ && pivotIndex !== undefined && isOverlapping(index, pivotIndex)) {
             pointerLeft = `${index * (boxWidth + boxSpacing) + boxWidth / 2 - boxWidth / 3}px`;
           } else if ( isPivot && pointers["j"] !== undefined && isOverlapping(index, pointers["j"])) {
             pointerLeft = `${index * (boxWidth + boxSpacing) + boxWidth / 2 + boxWidth / 3}px`;
+          } 
+
+          let pointerTop;
+          if (isJ || isPivot) {
+            pointerTop = "-20px";
+          } else if (isI) {
+            pointerTop = `${boxWidth}px`;
+          } else if (isP || isR) {
+            pointerTop = "70px";
+          } else {
+            pointerTop = "0px";
           }
 
           return (
@@ -61,12 +77,12 @@ function ArrayAnimation({ numbers, colors, pointers, springs, api, boxWidth, box
               key={key}
               style={{
                 position: "absolute",
-                top: isJ || isPivot ? "-20px" : `${boxWidth}px`,
+                top: pointerTop,
                 left: pointerLeft,
                 width: `${boxWidth / 1.7}px`,
                 height: `${boxWidth / 2.5}px`,
                 fontSize: `${boxWidth / 4.2}px`,
-                backgroundColor: "#72A0C1",
+                backgroundColor: isP || isR ? "#B0C4DE" : "#72A0C1",
                 color: "white",
                 transform: "translateX(-50%)",
                 display: "flex",

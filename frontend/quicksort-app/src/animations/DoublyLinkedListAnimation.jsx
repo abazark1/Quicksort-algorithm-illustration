@@ -102,7 +102,7 @@ function DoublyLinkedLisAnimation({ numbers, colors, pointers, springs, api, box
           );
         })}
       </div>
-      <div style={{ display: "flex", justifyContent: "center", fontSize: "16px", color: "darkslategray" }}>
+      <div style={{ display: "flex", justifyContent: "center", fontSize: "16px", color: "darkslategray", marginTop: "40px" }}>
         {currentAction}
       </div>
       <div style={{ marginTop: "20px" }}>
