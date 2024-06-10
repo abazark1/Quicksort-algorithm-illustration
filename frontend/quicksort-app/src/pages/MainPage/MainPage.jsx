@@ -115,7 +115,7 @@ function Main() {
       <input type="text" value={lengthInput} onChange={handleLengthChange} placeholder="Length (Optional)" />
       <input type="text" value={userInput} onChange={handleInputChange} placeholder="Data (Optional)" />
       <select value={algorithmInput} onChange={handleAlgorithmChange}>
-        <option value="">Select Algorithm</option>
+        <option value="">Select Data Structure</option>
         <option value="array">Array</option>
         <option value="linkedList">Linked List</option>
         <option value="doublyLinkedList">Doubly Linked List</option>

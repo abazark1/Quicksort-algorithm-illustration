@@ -3,10 +3,13 @@ package qsapp.quicksort.algorithm;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 public class QuickSortLinkedList implements SortStrategy {
     private Node head;
+    private Set<Integer> finalizedIndices;
 
     public QuickSortLinkedList(Node head){
         this.head = head;
@@ -14,6 +17,7 @@ public class QuickSortLinkedList implements SortStrategy {
 
     @Override
     public void sort(List<String> outputs){
+        finalizedIndices = new HashSet<>();
         quicksort(head, outputs);
     }
 
@@ -26,12 +30,12 @@ public class QuickSortLinkedList implements SortStrategy {
         Node t = p.next;
         if (t != r && t.next != r){
             partition(p, t, r, animations);
-            animations.add("final," + t.val + "," + getIndexOfElement(t));
+            markFinal(t, animations);
             QS(p, t, animations);
             QS(t, r, animations);
         } else {
             if(t != null){
-                animations.add("final," + t.val + "," + getIndexOfElement(t));
+                markFinal(t, animations);
             }
         }
     }
@@ -108,5 +112,13 @@ public class QuickSortLinkedList implements SortStrategy {
             length++;
         }
         return length;
+    }
+
+    private void markFinal(Node node, List<String> animations) {
+        int index = getIndexOfElement(node);
+        if (!finalizedIndices.contains(index)) {
+            animations.add("final," + node.val + "," + index);
+            finalizedIndices.add(index);
+        }
     }
 }

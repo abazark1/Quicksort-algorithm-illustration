@@ -17,7 +17,7 @@ function LinkedListAnimation({numbers, colors, pointers, springs, api, boxWidth,
         <div>pivot - pointer to the pivot element</div>
         <div>s - pointer to find the elements less than the pivot</div>
         <div>ps - pointer to the element previous to s</div>
-        <div>p - pointer to the most left element</div>
+        <div>p - pointer to the element before the pivot</div>
         <div>q - pointer to the element to be unlinked and inserted before pivot</div>
       </div>
       <p>Steps:</p>

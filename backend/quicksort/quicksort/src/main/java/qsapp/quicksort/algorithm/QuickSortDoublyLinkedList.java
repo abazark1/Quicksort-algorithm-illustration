@@ -2,16 +2,20 @@ package qsapp.quicksort.algorithm;
 
 import lombok.NoArgsConstructor;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 @NoArgsConstructor
 public class QuickSortDoublyLinkedList implements SortStrategy{
     private DoublyNode head;
+    private Set<Integer> finalizedIndices;
 
     public QuickSortDoublyLinkedList(DoublyNode head){
         this.head = head;
     }
     @Override
     public void sort(List<String> outputs){
+        finalizedIndices = new HashSet<>();
         quicksort(head, outputs);
     }
 
@@ -25,11 +29,11 @@ public class QuickSortDoublyLinkedList implements SortStrategy{
     public void QS(DoublyNode p, DoublyNode r, List<String> animations){
         if (p.next != r && p.next != r.prev){
             DoublyNode t = partition(p, r, animations);
-            animations.add("final," + t.val + "," + getIndexOfElement(t));
+            markFinal(t, animations);
             QS(p, t, animations);
             QS(t, r, animations);
-        } else {
-            animations.add("final," + p.next.val + "," + getIndexOfElement(p.next));
+        } else if (p.next != null) {
+            markFinal(p.next, animations);
         }
     }
 
@@ -108,5 +112,13 @@ public class QuickSortDoublyLinkedList implements SortStrategy{
             index++;
         }
         return -1;
+    }
+
+    private void markFinal(DoublyNode node, List<String> animations) {
+        int index = getIndexOfElement(node);
+        if (!finalizedIndices.contains(index)) {
+            animations.add("final," + node.val + "," + index);
+            finalizedIndices.add(index);
+        }
     }
 }

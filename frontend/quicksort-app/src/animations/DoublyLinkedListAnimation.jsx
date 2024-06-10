@@ -28,7 +28,7 @@ function DoublyLinkedLisAnimation({ numbers, colors, pointers, springs, api, box
         </div>
         <div>pivot - pointer to the pivot element</div>
         <div>s - pointer to find the elements less than the pivot</div>
-        <div>q - pointer to be unlinked and inserted before pivot</div>
+        <div>q - pointer to the element to be unlinked and inserted before pivot</div>
       </div>
       <p>Steps:</p>
       <div style={{ position: "relative", width: `${totalWidth}px`, display: "flex", justifyContent: "center", marginBottom: "70px" }}>

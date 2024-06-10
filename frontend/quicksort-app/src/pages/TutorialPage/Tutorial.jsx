@@ -34,9 +34,9 @@ const tutorialContent = {
           </p>
         </ul>
         <div className="image-container">
-          <img src="../public/Quicksort.png" alt="Quicksort structogram" style={{ width: "30%", height: "auto" }}/>
-          <img src="../public/Quicksort2.png" alt="Quicksort structogram" className="tutorial-image"/>
-        </div>
+          <img src="Quicksort.png" alt="Quicksort structogram" style={{ width: "30%", height: "auto" }}/>
+          <img src="Quicksort2.png" alt="Quicksort structogram" className="tutorial-image" />
+          </div>
         <p>
           The efficiency of the Quicksort algorithm depends on the good choice of the pivot. A bad choice of the pivot will decrease the performance
           significantly. For example: if the dataset is already in a particular order, such as reversed,selecting the first or last element as pivot
@@ -107,7 +107,7 @@ const tutorialContent = {
           the header.
         </p>
         <div className="image-container">
-          <img src="../../../public/cyclic-two-way-list.png" alt="Cyclic two-way list" style={{ width: "50%", height: "auto" }}/>
+          <img src="cyclic-two-way-list.png" alt="Cyclic two-way list" style={{ width: "50%", height: "auto" }}/>
         </div>
         <p>
           Quicksort for cyclic two-way lists is very similar to the implementation of singly linked lists. In both cases, the algorithm

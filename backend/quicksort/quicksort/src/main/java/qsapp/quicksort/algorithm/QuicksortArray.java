@@ -2,16 +2,21 @@ package qsapp.quicksort.algorithm;
 
 import lombok.NoArgsConstructor;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 public class QuicksortArray  implements SortStrategy{
     private int[] array;
+    private Set<Integer> finalizedIndices;
+
     public QuicksortArray(int[] array){
         this.array = array;
     }
 
     @Override
     public void sort(List<String> animations){
+        finalizedIndices = new HashSet<>();
         quicksort(array, animations);
     }
 
@@ -23,12 +28,14 @@ public class QuicksortArray  implements SortStrategy{
     public void QS(int[] arr, int p, int r, List<String> animations) {
         if (p < r) {
             int q = partition(arr, p, r, animations);
-            animations.add("final," + arr[q] + "," + q);
+            markFinal(arr, q, animations);
+            // animations.add("final," + arr[q] + "," + q);
             QS(arr, p, q - 1, animations);
             QS(arr, q + 1, r, animations);
         } else {
-            if (p < arr.length) {
-                animations.add("final," + arr[p] + "," + p);
+            if (p <= arr.length) {
+                markFinal(arr, p, animations);
+                //animations.add("final," + arr[p] + "," + p);
             }
         }
     }
@@ -53,7 +60,7 @@ public class QuicksortArray  implements SortStrategy{
             int j = i + 1;
             animations.add("init,j," + arr[j] + "," + j);
             while (j < r) {
-                animations.add("compare," + arr[i] + "," + i + "," + arr[j] + "," + j);
+                animations.add("compare," + arr[r] + "," + r + "," + arr[j] + "," + j);
                 if (arr[j] < arr[r]) {
                     if (arr[j] != arr[i]) {
                         animations.add("swap," + arr[i] + "," + i + "," + arr[j] + "," + j);
@@ -81,5 +88,12 @@ public class QuicksortArray  implements SortStrategy{
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
+    }
+
+    private void markFinal(int[] arr, int index, List<String> animations) {
+        if (index >= 0 && index < arr.length && !finalizedIndices.contains(index)) {
+            animations.add("final," + arr[index] + "," + index);
+            finalizedIndices.add(index);
+        }
     }
 }
