@@ -57,7 +57,7 @@ const tutorialContent = {
     ),
   },
   "quicksort-linked-lists": {
-    title: "Quicksort for Linked Lists",
+    title: "Quicksort for Singly Linked Lists",
     content: (
       <div>
         <p>

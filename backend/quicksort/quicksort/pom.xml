@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>qs-app</groupId>
 	<artifactId>quicksort</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>quicksort</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>

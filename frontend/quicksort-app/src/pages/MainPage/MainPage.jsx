@@ -71,7 +71,7 @@ function Main() {
     const numbers = userInput.split(',').map(Number);
 
     if (algorithmInput === '') {
-      setErrorMessage("Please choose the algorithm.");
+      setErrorMessage("Please choose the data structure.");
       isValid = false;
     } else if (!isFinite(Number(lengthInput))) {
       setErrorMessage("Please enter valid length number.");
@@ -117,7 +117,7 @@ function Main() {
       <select value={algorithmInput} onChange={handleAlgorithmChange}>
         <option value="">Select Data Structure</option>
         <option value="array">Array</option>
-        <option value="linkedList">Linked List</option>
+        <option value="linkedList">Singly Linked List</option>
         <option value="doublyLinkedList">Doubly Linked List</option>
       </select>
       <button data-testid="run-qs-button" onClick={handleRunClick}>Run Quicksort</button>
